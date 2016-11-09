@@ -1,0 +1,30 @@
+CACHE MANIFEST
+
+# Adds the ability to play the game offline.
+# The following comment needs to be updated whenever a change is made.
+# Run `rake appcache:update` to do so
+# Updated: 2016-11-90T01:27:00-02:00
+
+# Main page
+
+# CSS
+style/material.blue-orange.min.css
+style/main.css
+
+# Fonts
+style/fonts/material-icons.css
+style/fonts/MaterialIcons-Regular.eot
+style/fonts/MaterialIcons-Regular.woff
+style/fonts/MaterialIcons-Regular.woff2
+style/fonts/MaterialIcons-Regular.ttf
+
+# Other resources
+
+# JavaScript
+js/material.min.js
+js/aceual.js
+
+favicon.ico
+
+NETWORK:
+*

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR" manifest="cache.appcache">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>bizUAL</title>
+    <link href="style/material.blue-orange.min.css" rel="stylesheet">
+    <!-- Material Design Lite -->
+    <script src="js/material.min.js"></script>
+    <!-- Material Design icon font -->
+    <link href="style/fonts/material-icons.css" rel="stylesheet">
+    <link href="style/main.css" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="meta/apple-touch-icon.png">
+  </head>
+  <body>
+    <!-- Simple header with fixed tabs. -->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+                mdl-layout--fixed-tabs">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">bizUAL</span>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">bizUAL</span>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <div id="editor">prog algo011
+	imprima "Aprendendo Algoritmo!!!";
+fimprog
+</div>
+        </div>
+        <!-- Colored FAB button with ripple -->
+        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bizu-play-item">
+          <i class="material-icons">play_arrow</i>
+        </button>
+      </main>
+    </div>
+    <script src="js/aceual.js"></script>
+    <script>
+      var editor = ace.edit("editor");
+      editor.renderer.setShowGutter(false);
+      var UalMode = ace.require("ace/mode/ual").Mode;
+      editor.session.setMode(new UalMode());
+      editor.setTheme("ace/theme/ual");
+    </script>
+  </body>
+</html>
