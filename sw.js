@@ -1,8 +1,8 @@
 
 self.addEventListener('install', function(event) {
   event.waitUntil(
-    caches.create('bizual-static-v6').then(function(cache) {
-      return cache.add({
+    caches.create('bizual-static-v7').then(function(cache) {
+      return cache.addAll([
         './',
         'css/all.css',
         'css/fonts/MaterialIcons-Regular.eot',
@@ -13,7 +13,7 @@ self.addEventListener('install', function(event) {
         'js/material.min.js',
         'js/aceual.js',
         'imgs/icon.png'
-      });
+      ]);
   );
 });
 
