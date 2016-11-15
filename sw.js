@@ -1,7 +1,8 @@
-
-self.addEventListener('install', function(event) {
+/*global self,caches*/
+self.addEventListener('install', function (event) {
+  'use strict';
   event.waitUntil(
-    caches.create('bizual-static-v7').then(function(cache) {
+    caches.create('bizual-static-v7').then(function (cache) {
       return cache.addAll([
         './',
         'css/all.css',
@@ -14,12 +15,13 @@ self.addEventListener('install', function(event) {
         'js/aceual.js',
         'imgs/icon.png'
       ]);
-    });
+    })
   );
 });
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', function (event) {
+  'use strict';
   event.respondeWith(
-    caches.match(event.request);
+    caches.match(event.request)
   );
 });
