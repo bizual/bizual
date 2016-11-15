@@ -1,46 +1,79 @@
 
-var version = 'v3';
-var staticCacheName = 'bizual-static-v3';
+//'./',
+//'css/all.css',
+//'css/fonts/MaterialIcons-Regular.eot',
+//'css/fonts/MaterialIcons-Regular.woff',
+//'css/fonts/MaterialIcons-Regular.woff2',
+//'css/fonts/MaterialIcons-Regular.ttf',
+//'js/page.js',
+//'js/material.min.js',
+//'js/aceual.js',
+//'imgs/icon.png'
 
-self.oninstall = function(event) {
-  self.skipWaiting();
+'use strict';
 
-  event.waitUntil(
-    caches.open(staticCacheName).then(function(cache) {
-      return cache.addAll([
-        './',
-        'css/all.css',
-        'css/fonts/MaterialIcons-Regular.eot',
-        'css/fonts/MaterialIcons-Regular.woff',
-        'css/fonts/MaterialIcons-Regular.woff2',
-        'css/fonts/MaterialIcons-Regular.ttf',
-        'js/page.js',
-        'js/material.min.js',
-        'js/aceual.js',
-        'imgs/icon.png',
-      ]);
-    })
-  );
-};
+const PRECACHE = 'precache-v1';
+const RUNTIME = 'runtime';
 
-var expectedCaches = [
-  staticCacheName
+// A list of local resources we always want to be cached.
+const PRECACHE_URLS = [
+  'index.html',
+  './', // Alias for index.html
+  'css/all.css',
+  'css/fonts/MaterialIcons-Regular.eot',
+  'css/fonts/MaterialIcons-Regular.woff',
+  'css/fonts/MaterialIcons-Regular.woff2',
+  'css/fonts/MaterialIcons-Regular.ttf',
+  'js/page.js',
+  'js/material.min.js',
+  'js/aceual.js',
+  'imgs/icon.png'
 ];
 
-self.addEventListener('fetch', function(event) {
-  event.respondWith(
-    // try to return untouched request from network first
-    fetch(event.request.url, { mode: 'no-cors' }).catch(function() {
-      // if it fails, try to return request from the cache
-      return caches.match(event.request).then(function(response) {
-        if (response) {
-          return response;
-        }
-        // if not found in cache, return default offline content
-        if (event.request.headers.get('accept').includes('text/html')) {
-          return caches.match(staticCacheName);
-        }
-      })
-    })
+// The install handler takes care of precaching the resources we always need.
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(PRECACHE)
+      .then(cache => cache.addAll(PRECACHE_URLS))
+      .then(self.skipWaiting())
   );
+});
+
+// The activate handler takes care of cleaning up old caches.
+self.addEventListener('activate', event => {
+  const currentCaches = [PRECACHE, RUNTIME];
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return cacheNames.filter(cacheName => !currentCaches.includes(cacheName));
+    }).then(cachesToDelete => {
+      return Promise.all(cachesToDelete.map(cacheToDelete => {
+        return caches.delete(cacheToDelete);
+      }));
+    }).then(() => self.clients.claim())
+  );
+});
+
+// The fetch handler serves responses for same-origin resources from a cache.
+// If no response is found, it populates the runtime cache with the response
+// from the network before returning it to the page.
+self.addEventListener('fetch', event => {
+  // Skip cross-origin requests, like those for Google Analytics.
+  if (event.request.url.startsWith(self.location.origin)) {
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
+        if (cachedResponse) {
+          return cachedResponse;
+        }
+
+        return caches.open(RUNTIME).then(cache => {
+          return fetch(event.request).then(response => {
+            // Put a copy of the response in the runtime cache.
+            return cache.put(event.request, response.clone()).then(() => {
+              return response;
+            });
+          });
+        });
+      })
+    );
+  }
 });
