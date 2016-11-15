@@ -2,7 +2,7 @@
 self.addEventListener('install', function (event) {
   'use strict';
   event.waitUntil(
-    caches.create('bizual-static-v7').then(function (cache) {
+    caches.open('bizual-static-v7').then(function (cache) {
       return cache.addAll([
         './',
         'css/all.css',
