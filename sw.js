@@ -12,29 +12,24 @@
 
 'use strict';
 
-const PRECACHE = 'precache-v1';
+const PRECACHE = 'bizual-static-v2';
 const RUNTIME = 'runtime';
 
-// A list of local resources we always want to be cached.
-const PRECACHE_URLS = [
-  'index.html',
-  './', // Alias for index.html
-  'css/all.css',
-  'css/fonts/MaterialIcons-Regular.eot',
-  'css/fonts/MaterialIcons-Regular.woff',
-  'css/fonts/MaterialIcons-Regular.woff2',
-  'css/fonts/MaterialIcons-Regular.ttf',
-  'js/page.js',
-  'js/material.min.js',
-  'js/aceual.js',
-  'imgs/icon.png'
-];
-
-// The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(PRECACHE)
-      .then(cache => cache.addAll(PRECACHE_URLS))
+      .then(cache => cache.addAll([
+        './',
+        'css/all.css',
+        'css/fonts/MaterialIcons-Regular.eot',
+        'css/fonts/MaterialIcons-Regular.woff',
+        'css/fonts/MaterialIcons-Regular.woff2',
+        'css/fonts/MaterialIcons-Regular.ttf',
+        'js/page.js',
+        'js/material.min.js',
+        'js/aceual.js',
+        'imgs/icon.png'
+      ]))
       .then(self.skipWaiting())
   );
 });
