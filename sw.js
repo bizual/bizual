@@ -1,8 +1,6 @@
 
-require('serviceworker-cache-polyfill');
-
-var version = 'v2';
-var staticCacheName = 'bizual-static-v2';
+var version = 'v3';
+var staticCacheName = 'bizual-static-v3';
 
 self.oninstall = function(event) {
   self.skipWaiting();
@@ -29,30 +27,20 @@ var expectedCaches = [
   staticCacheName
 ];
 
-self.onactivate = function(event) {
-  if (self.clients && clients.claim) {
-    clients.claim();
-  }
-
-  // remove caches beginning "trains-" that aren't in
-  // expectedCaches
-  event.waitUntil(
-    caches.keys().then(function(cacheNames) {
-      return Promise.all(
-        cacheNames.map(function(cacheName) {
-          return caches.delete(cacheName);
-        })
-      );
-    })
-  );
-};
-
-self.onfetch = function(event) {
-  var requestURL = new URL(event.request.url);
-
+self.addEventListener('fetch', function(event) {
   event.respondWith(
-    caches.match(event.request, {
-      ignoreVary: true
+    // try to return untouched request from network first
+    fetch(event.request.url, { mode: 'no-cors' }).catch(function() {
+      // if it fails, try to return request from the cache
+      return caches.match(event.request).then(function(response) {
+        if (response) {
+          return response;
+        }
+        // if not found in cache, return default offline content
+        if (event.request.headers.get('accept').includes('text/html')) {
+          return caches.match(staticCacheName);
+        }
+      })
     })
   );
-};
+});
