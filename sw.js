@@ -14,6 +14,7 @@ self.addEventListener('install', function(event) {
         'js/aceual.js',
         'imgs/icon.png'
       ]);
+    });
   );
 });
 
