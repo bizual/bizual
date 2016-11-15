@@ -1,5 +1,5 @@
 /*global self,caches*/
-self.addEventListener('install', function (event) {
+self.oninstall = function (event) {
   'use strict';
   event.waitUntil(
     caches.open('bizual-static-v7').then(function (cache) {
@@ -17,11 +17,11 @@ self.addEventListener('install', function (event) {
       ]);
     })
   );
-});
+};
 
-self.addEventListener('fetch', function (event) {
+self.onfetch = function (event) {
   'use strict';
-  event.respondeWith(
+  event.respondWith(
     caches.match(event.request)
   );
-});
+};
