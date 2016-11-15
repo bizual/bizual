@@ -1,5 +1,4 @@
 /*global navigator*/
 if (navigator.serviceWorker !== undefined) {
-  navigator.serviceWorker
-    .register('sw.js');
+  navigator.serviceWorker.register('sw.js');
 }

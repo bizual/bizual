@@ -15,11 +15,11 @@
       <header class="mdl-layout__header">
         <div class="mdl-layout__header-row">
           <!-- Title -->
-          <span class="mdl-layout-title">bizUAL</span>
+          <span class="mdl-layout-title">BizUAL</span>
         </div>
       </header>
       <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">bizUAL</span>
+<!--        <span class="mdl-layout-title">BizUAL</span>-->
       </div>
       <main class="mdl-layout__content">
         <div class="page-content">
@@ -34,7 +34,11 @@ fimprog
         </button>
       </main>
     </div>
-    <script src=js/page.js></script>
+    <script>
+      if (navigator.serviceWorker !== undefined) {
+        navigator.serviceWorker.register('sw.js');
+      }
+    </script>
     <script src=js/material.min.js></script>
     <script src=js/aceual.js></script>
     <script>
