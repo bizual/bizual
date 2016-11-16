@@ -129,6 +129,7 @@ function bundle(b, outputPath) {
 
 var jsBundles = {
   'js/page.js': createBundle('./src/js/page/index.js'),
+  'js/ualo-worker.js': createBundle('./src/js/ualo-worker/index.js'),
   'js/promise-polyfill.js': createBundle('./src/js/promise-polyfill/index.js'),
   'js/fastclick.js': createBundle('./src/js/fastclick/index.js'),
   'sw.js': plugins.util.env['disable-sw'] ? createBundle('./src/js/sw-null/index.js') : createBundle('./src/js/sw/index.js')

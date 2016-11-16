@@ -23,7 +23,7 @@ self.addEventListener('install', function(event) {
 //      'js/gzip-worker.js',
       'js/page.js',
 //      'js/prism-worker.js',
-//      'js/svgo-worker.js',
+      'js/ualo-worker.js',
       'changelog.json',
       'https://fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata'
     ]);
