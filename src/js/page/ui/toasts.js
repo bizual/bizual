@@ -42,7 +42,7 @@ class Toasts {
 
   show(message, {
     duration = 0,
-    buttons = ['dismiss']
+    buttons = ['descartar']
   }={}) {
     var toast = new Toast(message, duration, buttons);
     this.container.appendChild(toast.container);
