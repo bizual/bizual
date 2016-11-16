@@ -1,0 +1,12 @@
+{
+  "name": "BizUAL",
+  "scope": "./",
+  "icons": [{
+    "src": "imgs/icon.png",
+    "sizes": "600x600"
+  }],
+  "background_color": "#bababa",
+  "display": "standalone",
+  "start_url": "./",
+  "theme_color": "#1976D2"
+}
