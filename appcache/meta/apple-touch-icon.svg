@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="152"
+   height="152"
+   viewBox="0 0 152 152"
+   id="svg2"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="apple-touch-icon.svg"
+   inkscape:export-filename="/home/camaleaun/git/bizUAL/apple-touch-icon.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <metadata
+     id="metadata23">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1855"
+     inkscape:window-height="1056"
+     id="namedview21"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="2.6074563"
+     inkscape:cx="-41.750664"
+     inkscape:cy="100.76002"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <defs
+     id="defs4">
+    <radialGradient
+       id="gradient"
+       gradientUnits="userSpaceOnUse"
+       cx="64"
+       cy="64"
+       r="49">
+      <stop
+         style="stop-color:#800080"
+         offset="0"
+         id="stop7" />
+      <stop
+         style="stop-color:#660066"
+         offset="1"
+         id="stop9" />
+    </radialGradient>
+  </defs>
+  <g
+     id="g4177"
+     transform="matrix(1.7272727,0,0,1.7272727,-34.545454,-51.818181)">
+    <path
+       sodipodi:nodetypes="cccsscccc"
+       inkscape:connector-curvature="0"
+       id="path13"
+       d="m 28,30 c -4.418,0 -8,3.582 -8,8 l 0,72 c 0,4.418 3.582,8 8,8 l 72,0 c 4.418,0 8,-3.582 8,-8 l 0,-72 c 0,-4.418 -3.582,-8 -8,-8 z"
+       style="fill:#660066;fill-opacity:1" />
+    <path
+       d="M 91.999867,46.00015 C 72.289567,45.95395 59.514985,56.80023 47.674815,73.22577 L 27.199927,67.60087 20,79.6003 37.699954,88.45037 c -1.120333,1.82287 -2.235575,3.58183 -3.375094,5.47493 l 9.750195,9.7496 c 1.89333,-1.1388 3.65183,-2.2543 5.47519,-3.3738 L 58.399915,118 70.399847,110.8 64.774777,90.32571 c 16.4258,-11.84013 27.26994,-24.61505 27.22509,-44.32556 z m -14.47446,14.32601 c 2.62271,2.62265 2.70026,7.04981 0.0746,9.67485 -2.62536,2.62547 -7.05294,2.54752 -9.67514,-0.0761 -2.62298,-2.62291 -2.55074,-6.89971 0.0746,-9.52526 2.62565,-2.62593 6.90229,-2.69793 9.52531,-0.0771 z M 32.075364,96.4763 c -5.16935,4.1094 -7.001113,10.4924 -7.274604,16.1246 l -3.51e-4,0.5992 0.60003,0 c 5.631755,-0.271 12.014699,-2.1049 16.125077,-7.2741 l -0.749685,-0.7501 c -3.397294,2.6692 -7.523843,3.5272 -11.850551,3.9 0.37224,-4.3268 1.230946,-8.4538 3.900324,-11.85 l -0.75024,-0.7496 z"
+       style="fill:#ffffff"
+       id="path19"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
