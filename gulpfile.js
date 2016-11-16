@@ -23,6 +23,13 @@ gulp.task('clean', function (done) {
   require('del')(['build'], done);
 });
 
+var pageData;
+gulp.task('get-page-data', function(done) {
+  pageData = {};
+  pageData.changelog = JSON.parse(fs.readFileSync("./src/changelog.json"));
+  done();
+});
+
 gulp.task('css', function () {
   return gulp.src('src/css/*.scss')
     .pipe(plugins.sass.sync().on('error', plugins.sass.logError))
@@ -34,13 +41,14 @@ gulp.task('css', function () {
     .pipe(reload({stream: true}));
 });
 
-gulp.task('html', ['css'], function () {
+gulp.task('html', ['get-page-data', 'css'], function () {
   return gulp.src([
     // Copy all `.html` files
     'src/*.html',
   ])
   .pipe(plugins.swig({
-    defaults: { cache: false }
+    defaults: { cache: false },
+    data: pageData
   }))
 //  .pipe(plugins.htmlmin({
 //    removeComments: true,
