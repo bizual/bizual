@@ -1,10 +1,10 @@
 "use strict";
 
 var utils = require('./utils');
-var svgo = new (require('./svgo'));
+var ualo = new (require('./ualo'));
 var storage = require('../utils/storage');
 
-var SvgFile = require('./svg-file');
+var UalFile = require('./ual-file');
 
 class MainController {
   constructor() {
@@ -28,20 +28,20 @@ class MainController {
 
     // ui events
     this._settingsUi.on('change', _ => this._onSettingsChange());
-    this._mainMenuUi.on('svgDataLoad', e => this._onInputChange(e));
-    this._dropUi.on('svgDataLoad', e => this._onInputChange(e));
+    this._mainMenuUi.on('ualDataLoad', e => this._onInputChange(e));
+    this._dropUi.on('ualDataLoad', e => this._onInputChange(e));
     this._mainMenuUi.on('error', ({error}) => this._handleError(error));
     this._viewTogglerUi.on('change', e => this._onViewSelectionChange(e));
 
     // state
-    this._inputFilename = 'image.svg';
+    this._inputFilename = 'algorithm.ual';
     this._inputSvg = null;
     this._cache = new (require('./results-cache'))(10);
     this._latestCompressJobId = 0;
     this._userHasInteracted = false;
     this._reloading = false;
 
-    if ('serviceWorker' in navigator) {
+    if (navigator.serviceWorker !== undefined) {
       navigator.serviceWorker.register('sw.js', {
         scope: './'
       }).then(registration => {
@@ -88,7 +88,7 @@ class MainController {
 
       // someone managed to hit the preloader, aww
       if (this._preloaderUi.activated) {
-        this._toastsUi.show("Ready now!", {
+        this._toastsUi.show("Pronto agora!", {
           duration: 3000
         });
       }
@@ -97,8 +97,8 @@ class MainController {
       // for testing
       async _ => {
         this._onInputChange({
-          data: await utils.get('test-svgs/car-lite.svg'),
-          filename: 'car.svg'
+          data: await utils.get('test-uals/algo11.ual'),
+          filename: 'algo11.ual'
         });
       }();
       */
@@ -118,7 +118,7 @@ class MainController {
       // the very first activation!
       // tell the user stuff works offline
       if (newWorker.state == 'activated' && !navigator.serviceWorker.controller) {
-        this._toastsUi.show("Ready to work offline", {
+        this._toastsUi.show("Pronto para trabalhar offline", {
           duration: 5000
         });
         return;
@@ -133,13 +133,13 @@ class MainController {
         }
 
         // otherwise, show the user an alert
-        var toast = this._toastsUi.show("Update available", {
-          buttons: ['reload', 'dismiss']
+        var toast = this._toastsUi.show("Atualização disponível", {
+          buttons: ['recarregar', 'descartar']
         });
 
         var answer = await toast.answer;
 
-        if (answer == 'reload') {
+        if (answer == 'recarregar') {
           this._reloading = true;
           location.reload();
         }
@@ -158,11 +158,11 @@ class MainController {
     this._userHasInteracted = true;
 
     try {
-      this._inputSvg = await svgo.load(event.data);
+      this._inputSvg = await ualo.load(event.data);
       this._inputFilename = event.filename;
     }
     catch(e) {
-      e.message = "Load failed: " + e.message;
+      e.message = "Carga falhou: " + e.message;
       this._mainMenuUi.stopSpinner();
       this._handleError(e);
       return;
@@ -209,7 +209,7 @@ class MainController {
   async _compressSvg(settings, itterationCallback = function(){}) {
     var thisJobId = this._latestCompressJobId = Math.random();
 
-    await svgo.abortCurrent();
+    await ualo.abortCurrent();
 
     if (thisJobId != this._latestCompressJobId) {
       // while we've been waiting, there's been a newer call
@@ -218,9 +218,7 @@ class MainController {
     }
 
     if (settings.original) {
-      this._updateForFile(this._inputSvg, {
-        gzip: settings.gzip
-      });
+      this._updateForFile(this._inputSvg);
       return;
     }
 
@@ -228,8 +226,7 @@ class MainController {
 
     if (cacheMatch) {
       this._updateForFile(cacheMatch, {
-        compareToFile: this._inputSvg,
-        gzip: settings.gzip
+        compareToFile: this._inputSvg
       });
       return;
     }
@@ -237,11 +234,10 @@ class MainController {
     this._downloadButtonUi.working();
 
     try {
-      var finalResultFile = await svgo.process(settings, resultFile => {
+      var finalResultFile = await ualo.process(settings, resultFile => {
         itterationCallback(resultFile);
         this._updateForFile(resultFile, {
-          compareToFile: this._inputSvg,
-          gzip: settings.gzip
+          compareToFile: this._inputSvg
         });
       });
       this._cache.add(settings.fingerprint, finalResultFile);
@@ -256,15 +252,10 @@ class MainController {
     this._downloadButtonUi.done();
   }
 
-  async _updateForFile(svgFile, {compareToFile, gzip}) {
-    this._outputUi.update(svgFile);
-    this._downloadButtonUi.setDownload(this._inputFilename, svgFile);
-    this._copyButtonUi.setSVG(svgFile);
-
-    this._resultsUi.update({
-      comparisonSize: compareToFile && (await compareToFile.size({ compress: gzip })),
-      size: await svgFile.size({ compress: gzip })
-    });
+  async _updateForFile(ualFile, {compareToFile}) {
+    this._outputUi.update(ualFile);
+    this._downloadButtonUi.setDownload(this._inputFilename, ualFile);
+    this._copyButtonUi.setUAL(ualFile);
   }
 }
 

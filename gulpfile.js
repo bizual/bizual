@@ -26,9 +26,9 @@ gulp.task('clean', function (done) {
 gulp.task('css', function () {
   return gulp.src('src/css/*.scss')
     .pipe(plugins.sass.sync().on('error', plugins.sass.logError))
-    .pipe(plugins.sourcemaps.init())
+//    .pipe(plugins.sourcemaps.init())
 //    .pipe(plugins.sass({ outputStyle: 'compressed' }))
-    .pipe(plugins.sourcemaps.write('./'))
+//    .pipe(plugins.sourcemaps.write('./'))
     .pipe(gulp.dest('build/css/'))
     .pipe(plugins.filter('**/*.css'))
     .pipe(reload({stream: true}));
@@ -39,7 +39,7 @@ gulp.task('html', ['css'], function () {
     // Copy all `.html` files
     'src/*.html',
   ])
-  .pipe(plugins.htmlmin({
+//  .pipe(plugins.htmlmin({
 //    removeComments: true,
 //    removeCommentsFromCDATA: true,
 //    removeCDATASectionsFromCDATA: true,
@@ -48,8 +48,9 @@ gulp.task('html', ['css'], function () {
 //    removeAttributeQuotes: true,
 //    removeRedundantAttributes: true,
 //    minifyJS: true
-  })).pipe(gulp.dest('build'))
-    .pipe(reload({stream: true}));
+//  }))
+  .pipe(gulp.dest('build'))
+  .pipe(reload({stream: true}));
 });
 
 
@@ -107,10 +108,10 @@ function bundle(b, outputPath) {
     // optional, remove if you don't need to buffer file contents
     .pipe(buffer())
     // optional, remove if you dont want sourcemaps
-    .pipe(plugins.sourcemaps.init({loadMaps: true})) // loads map from browserify file
+//    .pipe(plugins.sourcemaps.init({loadMaps: true})) // loads map from browserify file
        // Add transformation tasks to the pipeline here.
-    .pipe(plugins.sourcemaps.write('./')) // writes .map file
-    .pipe(plugins.size({ gzip: true, title: outputFile }))
+//    .pipe(plugins.sourcemaps.write('./')) // writes .map file
+//    .pipe(plugins.size({ gzip: true, title: outputFile }))
     .pipe(gulp.dest('build/' + outputDir))
     .pipe(reload({ stream: true }));
 }
