@@ -8,15 +8,16 @@ var multipassInstance;
 
 var actions = {
   load({data}) {
-    ual2js(data, function(p) {
-      parsedUal = p;
-    });
-
-    if (parsedUal.error) {
-      throw Error(parsedUal.error);
-    }
-
-    return getDimensions(parsedUal);
+//    ual2js(data, function(p) {
+//      parsedUal = p;
+//    });
+//
+//    if (parsedUal.error) {
+//      throw Error(parsedUal.error);
+//    }
+//
+//    return getDimensions(parsedUal);
+    return {};
   },
   process({settings}) {
     multipassInstance = multipassCompress(settings);
