@@ -39,6 +39,9 @@ gulp.task('html', ['css'], function () {
     // Copy all `.html` files
     'src/*.html',
   ])
+  .pipe(plugins.swig({
+    defaults: { cache: false }
+  }))
 //  .pipe(plugins.htmlmin({
 //    removeComments: true,
 //    removeCommentsFromCDATA: true,

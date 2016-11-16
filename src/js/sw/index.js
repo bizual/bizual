@@ -15,15 +15,15 @@ var cacheVerion = version.split('.')[0];
 self.addEventListener('install', function(event) {
   event.waitUntil(async _ => {
     var activeVersionPromise = storage.get('active-version');
-    var cache = await caches.open('svgomg-static-' + cacheVerion);
+    var cache = await caches.open('bizual-static-' + cacheVerion);
     await cache.addAll([
       './',
       'imgs/icon.png',
       'css/all.css',
-      'js/gzip-worker.js',
+//      'js/gzip-worker.js',
       'js/page.js',
-      'js/prism-worker.js',
-      'js/svgo-worker.js',
+//      'js/prism-worker.js',
+//      'js/svgo-worker.js',
       'changelog.json',
       'https://fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata'
     ]);
@@ -37,16 +37,16 @@ self.addEventListener('install', function(event) {
 });
 
 var expectedCaches = [
-  'svgomg-static-' + cacheVerion,
+  'bizual-static-' + cacheVerion,
 ];
 
 self.addEventListener('activate', function(event) {
   event.waitUntil(async _ => {
-    // remove caches beginning "svgomg-" that aren't in
+    // remove caches beginning "bizual-" that aren't in
     // expectedCaches
     var cacheNames = await caches.keys();
     for (var cacheName of cacheNames) {
-      if (!/^svgomg-/.test(cacheName)) continue;
+      if (!/^bizual-/.test(cacheName)) continue;
       if (expectedCaches.indexOf(cacheName) == -1) {
         await caches.delete(cacheName);
       }
@@ -60,7 +60,7 @@ async function handleFontRequest(request) {
   var match = await caches.match(request);
   if (match) return match;
   var response = await fetch(request.clone());
-  var fontCache = await caches.open('svgomg-fonts');
+  var fontCache = await caches.open('bizual-fonts');
   fontCache.put(request, response.clone());
   return response;
 }

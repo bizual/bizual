@@ -13,8 +13,8 @@ class MainMenu extends (require('events').EventEmitter) {
     utils.domReady.then(_ => {
       this.container = document.querySelector('.main-menu');
       this._selectFileInput = document.querySelector('.select-file-input');
-      this._pasteInput = document.querySelector('.paste-input');
-      this._loadDemoBtn = document.querySelector('.load-demo');
+//      this._pasteInput = document.querySelector('.paste-input');
+//      this._loadDemoBtn = document.querySelector('.load-demo');
       this._selectFileBtn = document.querySelector('.select-file');
       this._pasteLabel = document.querySelector('.menu-input');
       this._overlay = this.container.querySelector('.overlay');
@@ -26,9 +26,7 @@ class MainMenu extends (require('events').EventEmitter) {
       this._overlay.addEventListener('click', e => this._onOverlayClick(e));
 
       this._selectFileBtn.addEventListener('click', e => this._onSelectFileClick(e));
-      this._loadDemoBtn.addEventListener('click', e => this._onLoadDemoClick(e));
       this._selectFileInput.addEventListener('change', e => this._onFileInputChange(e));
-      this._pasteInput.addEventListener('input', e => this._onTextInputChange(e));
     });
   }
 
@@ -65,16 +63,16 @@ class MainMenu extends (require('events').EventEmitter) {
   _onTextInputChange(event) {
     var val = this._pasteInput.value.trim();
 
-    if (val.indexOf('</svg>') != -1) {
+    if (val.indexOf('fimprog') != -1) {
       this._pasteInput.value = '';
       this._pasteInput.blur();
 
       this._pasteLabel.appendChild(this._spinner.container);
       this._spinner.show();
 
-      this.emit('svgDataLoad', {
+      this.emit('ualDataLoad', {
         data: val,
-        filename: 'image.svg'
+        filename: 'algorithm.ual'
       });
     }
   }
@@ -95,40 +93,10 @@ class MainMenu extends (require('events').EventEmitter) {
     this._selectFileBtn.appendChild(this._spinner.container);
     this._spinner.show();
 
-    this.emit('svgDataLoad', {
+    this.emit('ualDataLoad', {
       data: await utils.readFileAsText(file),
       filename: file.name
     });
-  }
-
-  async _onLoadDemoClick(event) {
-    event.preventDefault();
-    event.target.blur();
-    this._loadDemoBtn.appendChild(this._spinner.container);
-    this._spinner.show();
-
-    try {
-      this.emit('svgDataLoad', {
-        data: await utils.get('test-svgs/car-lite.svg'),
-        filename: 'car.svg'
-      });
-    }
-    catch (error) {
-      this.stopSpinner();
-
-      var e;
-
-      if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-        e = Error("Demo not available offline");
-      }
-      else {
-        e = Error("Couldn't fetch demo SVG");
-      }
-
-      this.emit('error', {
-        error: e
-      });
-    }
   }
 }
 
