@@ -1,0 +1,48 @@
+{
+  "name": "arnoldc.js",
+  "version": "0.0.3",
+  "description": "Compiler from ArnoldC to Javascript",
+  "main": "main.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "gulp compile"
+  },
+  "bin": {
+    "arnoldc.js": "./bin/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ThomasCrvsr/arnoldc-to-js.git"
+  },
+  "keywords": [
+    "arnoldc",
+    "compiler"
+  ],
+  "author": "ThomasCrvsr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThomasCrvsr/arnoldc-to-js/issues"
+  },
+  "homepage": "https://github.com/ThomasCrvsr/arnoldc-to-js",
+  "devDependencies": {
+    "del": "~1.1.1",
+    "gulp": "~3.8.10",
+    "gulp-babel": "^5.2.1",
+    "gulp-jshint": "~1.9.0",
+    "gulp-mocha": "~2.0.0",
+    "jshint-stylish": "~1.0.0"
+  },
+  "dependencies": {
+    "brfs": "^1.4.1",
+    "jison": "^0.4.15",
+    "source-map": "^0.3.0"
+  },
+  "browserify": {
+    "transform": [
+      "brfs"
+    ]
+  }
+}
