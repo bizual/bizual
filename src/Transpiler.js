@@ -22,7 +22,7 @@ var withSourceMaps = function(nodes, fileName) {
 };
 
 var transpile = function(source, fileName) {
-  var bnf = fs.readFileSync(path.join(__dirname, './arnoldc.jison'), 'utf-8');
+  var bnf = fs.readFileSync(path.join(__dirname, './ual.jison'), 'utf-8');
   var parser = new jison.Parser(bnf);
   parser.yy = require('./ast');
   var AST = parser.parse(source);

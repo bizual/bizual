@@ -2,10 +2,11 @@
 %%
 
 \s+                                /* skip whitespaces */
-"IT'S SHOWTIME"                    return 'BEGIN_MAIN'
-"YOU HAVE BEEN TERMINATED"         return 'END_MAIN'
+"prog"                    return 'INICIO_DO_ALGORITMO'
+"fimprog"         return 'FIM_DO_ALGORITMO'
 \-?[0-9]+                          return 'NUMBER'
-"TALK TO THE HAND"                 return 'PRINT'
+"imprima"                 return 'PRINT'
+";"                         return 'PONTO_E_VIRGULA';
 "@I LIED"                          return 'FALSE'
 "@NO PROBLEMO"                     return 'TRUE'
 "HEY CHRISTMAS TREE"               return 'DECLARE_INT'
@@ -51,10 +52,10 @@
 %% /* language grammar */
 
 program
-	: methods BEGIN_MAIN statements END_MAIN methods EOF
+	: methods INICIO_DO_ALGORITMO statements FIM_DO_ALGORITMO methods EOF
 		{ return $1
         .concat($5)
-        .concat(new yy.MainExpression($3, @2, @4)); 
+        .concat(new yy.MainExpression($3, @2, @4));
     }
 	;
 
@@ -95,7 +96,7 @@ statements
 	;
 
 statement
-	: PRINT integer
+	: PRINT integer PONTO_E_VIRGULA
 		{ $$ = new yy.PrintExpression(@1, $2); }
 	| DECLARE_INT variable SET_INITIAL_VALUE integer
 		{ $$ = new yy.IntDeclarationExpression(@1, $2, $4); }

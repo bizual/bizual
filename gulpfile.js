@@ -5,6 +5,13 @@ var gulp = require('gulp');
 var babel = require('gulp-babel');
 var jshint = require('gulp-jshint');
 var mocha = require('gulp-mocha');
+var replace = require('gulp-replace');
+
+gulp.task('jisonbr', function(){
+  gulp.src(['node_modules/jison/**/*.js'])
+    .pipe(replace('bar', 'foo'))
+    .pipe(gulp.dest('build/file.txt'));
+});
 
 gulp.task('clean', function() {
   del(['test/output']);
