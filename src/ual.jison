@@ -7,6 +7,7 @@
 \-?[0-9]+                          return 'NUMBER'
 "imprima"                 return 'PRINT'
 ";"                         return 'PONTO_E_VIRGULA';
+[a-zA-Z][a-zA-Z0-9]*                        return 'NOME_DO_ALGORITMO';
 "@I LIED"                          return 'FALSE'
 "@NO PROBLEMO"                     return 'TRUE'
 "HEY CHRISTMAS TREE"               return 'DECLARE_INT'
@@ -52,10 +53,10 @@
 %% /* language grammar */
 
 program
-	: methods INICIO_DO_ALGORITMO statements FIM_DO_ALGORITMO methods EOF
+	: methods INICIO_DO_ALGORITMO NOME_DO_ALGORITMO statements FIM_DO_ALGORITMO methods EOF
 		{ return $1
-        .concat($5)
-        .concat(new yy.MainExpression($3, @2, @4));
+        .concat($6)
+        .concat(new yy.MainExpression($4, @2, @5));
     }
 	;
 

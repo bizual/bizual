@@ -1,7 +1,7 @@
 {
-  "name": "arnoldc.js",
-  "version": "0.0.3",
-  "description": "Compiler from ArnoldC to Javascript",
+  "name": "uale",
+  "version": "0.0.1",
+  "description": "Compiler from UAL to Javascript",
   "main": "main.js",
   "directories": {
     "example": "examples"

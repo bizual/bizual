@@ -1,3 +1,4 @@
-prog
-imprima "Aprendendo Algoritmos!!!"
+prog algoritmo11
+  imprima "Aprendendo Algoritmos!!!";
 fimprog
+
