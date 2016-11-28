@@ -4,7 +4,7 @@ class FileDrop extends (require('events').EventEmitter) {
   constructor() {
     super();
     this.container = utils.strToEl(
-      '<div class="drop-overlay">Drop it!</div>' +
+      '<div class="drop-overlay">Solte!</div>' +
     '');
 
     // drag events are horrid
