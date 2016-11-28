@@ -1,12 +1,3 @@
-# editor
-.idea/
-*.iml
-.DS_Store
-
-# node stuff
-node_modules/
-lib
-
-# transpiled files
-examples/**/*.js
-examples/**/*.js.map
+.sass-cache
+build
+node_modules
