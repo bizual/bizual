@@ -1,8 +1,14 @@
 /*global self,caches*/
+var version = 'v9';
+
 self.oninstall = function (event) {
   'use strict';
   event.waitUntil(
+<<<<<<< HEAD
+    caches.open('bizual-static-' + version).then(function (cache) {
+=======
     caches.open('bizual-static-v8').then(function (cache) {
+>>>>>>> origin/gh-pages
       return cache.addAll([
         './',
         'css/all.css',
@@ -23,5 +29,20 @@ self.onfetch = function (event) {
   'use strict';
   event.respondWith(
     caches.match(event.request)
+  );
+};
+
+self.onactivate = function activator (event) {
+  event.waitUntil(
+    caches.keys().then(function (keys) {
+      return Promise.all(keys
+        .filter(function (key) {
+          return key.indexOf(version) !== 0;
+        })
+        .map(function (key) {
+          return caches.delete(key);
+        })
+      );
+    })
   );
 };
