@@ -1,5 +1,5 @@
 /*global self,caches*/
-var version = 'v16',
+var version = 'v17',
     cacheName = 'bizual-static-' + version,
     cacheFiles = [
     './',
@@ -11,6 +11,8 @@ var version = 'v16',
     'js/page.js',
     'js/material.min.js',
     'js/aceual.js',
+    'js/parser.js',
+    'js/intepreter.js',
     'imgs/icon.png'
 ];
 

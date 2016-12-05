@@ -254,6 +254,7 @@ pre {
   float: none;
   display: block;
   font-family: monospace;
+  white-space: pre;
   .mdl-snackbar--active & {
     padding: 24px 24px 52px 24px;
   }

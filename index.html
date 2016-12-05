@@ -81,8 +81,20 @@ fimprog
     textConsole.setAttribute('aria-hidden', true)
     actionButton.setAttribute('aria-hidden', true)
   });
+    var myInterpreter;
+    function initAlert(interpreter, scope) {
+      var wrapper = function(text) {
+        text = text ? text.toString() : '';
+        return interpreter.createPrimitive(console.log(text));
+      };
+      interpreter.setProperty(scope, 'imprima',
+          interpreter.createNativeFunction(wrapper));
+    };
   showSnackbarButton.addEventListener('click', function() {
     'use strict';
+    var code = editor.getValue();
+    myInterpreter = new Interpreter(code, initAlert);
+    myInterpreter.run();
 //    var data = {
 //      message: 'Aprendendo Algoritmo!!!',
 //      timeout: 99999999999999999999,
@@ -90,7 +102,7 @@ fimprog
 //      actionText: 'Encerrar'
 //    };
 //    snackbarContainer.MaterialSnackbar.showSnackbar(data);
-    textConsole.innerHTML = 'Aprendendo Algoritmo!!!';
+//    textConsole.innerHTML = 'Aprendendo Algoritmo!!!';
     actionButton.innerHTML = "Encerrar";
     actionButton.removeAttribute('aria-hidden');
     snackbarContainer.className = "mdl-js-snackbar mdl-snackbar mdl-snackbar--active";
@@ -99,3 +111,6 @@ fimprog
   });
 }());
 </script>
+    <script src="js/parser.js"></script>
+    <script src="js/interpreter.js"></script>
+
