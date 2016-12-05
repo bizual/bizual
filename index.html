@@ -29,7 +29,7 @@ fimprog
 </div>
         </div>
         <!-- Colored FAB button with ripple -->
-        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bizu-play-item">
+        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bizu-play-item" id=run>
           <i class="material-icons">play_arrow</i>
         </button>
       </main>
@@ -48,3 +48,26 @@ fimprog
       editor.session.setMode(new UalMode());
       editor.setTheme("ace/theme/ual");
     </script>
+    <div id="demo-snackbar-example" class="mdl-js-snackbar mdl-snackbar">
+  <div class="mdl-snackbar__text"></div>
+  <button class="mdl-snackbar__action" type="button"></button>
+</div>
+<script>
+(function() {
+  'use strict';
+  var snackbarContainer = document.querySelector('#demo-snackbar-example');
+  var showSnackbarButton = document.querySelector('#run');
+  var handler = function(event) {
+  };
+  showSnackbarButton.addEventListener('click', function() {
+    'use strict';
+    var data = {
+      message: 'Aprendendo Algoritmo!!!',
+      timeout: 99999999999999999999,
+      actionHandler: handler,
+      actionText: 'Encerrar'
+    };
+    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+  });
+}());
+</script>
