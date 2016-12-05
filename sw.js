@@ -2,6 +2,7 @@
 var version = 'v9';
 
 self.oninstall = function (event) {
+  console.log('install');
   'use strict';
   event.waitUntil(
     caches.open('bizual-static-' + version).then(function (cache) {
@@ -22,6 +23,7 @@ self.oninstall = function (event) {
 };
 
 self.onfetch = function (event) {
+  console.log('fetch');
   'use strict';
   event.respondWith(
     caches.match(event.request)
@@ -29,6 +31,7 @@ self.onfetch = function (event) {
 };
 
 self.onactivate = function activator (event) {
+  console.log('activate');
   event.waitUntil(
     caches.keys().then(function (keys) {
       return Promise.all(keys
