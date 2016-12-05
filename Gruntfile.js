@@ -129,6 +129,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-concat');
 
+  grunt.registerTask('ghcss', ['shell:ghcss']);
+
   grunt.registerTask('style', ['sass', 'autoprefixer', 'concat']);
 
   grunt.registerTask('bower', ['shell:bowerInstall', 'copy']);
