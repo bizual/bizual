@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BizUAL</title>
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,initial-scale=1,minimum-scale=1,minimal-ui">
+    <link rel=apple-touch-icon-precomposed href=imgs/icon.png>
+    <link rel=icon href=imgs/icon.png>
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=application-name content="BizUAL">
+    <link rel=stylesheet href=css/all.css>
+  <body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+                mdl-layout--fixed-tabs">
+      <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">BizUAL</span>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+<!--        <span class="mdl-layout-title">BizUAL</span>-->
+      </div>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <div id="editor">prog algo011
+	imprima "Aprendendo Algoritmo!!!";
+fimprog
+</div>
+        </div>
+        <!-- Colored FAB button with ripple -->
+        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bizu-play-item">
+          <i class="material-icons">play_arrow</i>
+        </button>
+      </main>
+    </div>
+    <script>
+      if (navigator.serviceWorker !== undefined) {
+        navigator.serviceWorker.register('sw.js');
+      }
+    </script>
+    <script src=js/material.min.js></script>
+    <script src=js/aceual.js></script>
+    <script>
+      var editor = ace.edit("editor");
+      //editor.renderer.setShowGutter(false);
+      var UalMode = ace.require("ace/mode/ual").Mode;
+      editor.session.setMode(new UalMode());
+      editor.setTheme("ace/theme/ual");
+    </script>
