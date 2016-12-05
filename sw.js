@@ -1,5 +1,5 @@
 /*global self,caches*/
-var version = 'v12',
+var version = 'v13',
     cacheName = 'bizual-static-' + version,
     cacheFiles = [
     './',
@@ -33,11 +33,11 @@ self.onfetch = function (event) {
 self.onactivate = function activator (event) {
   event.waitUntil(
     caches.keys().then(function (keys) {
-      return Promise.all(keys
+      return Promise.all(keys.map(function (key) {
         if (key !== cacheName) {
           return caches.delete(key);
         }
-      );
+      }));
     })
   );
 };
