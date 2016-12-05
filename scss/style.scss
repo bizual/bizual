@@ -103,7 +103,8 @@
   }
 }
 code, kbd, pre, samp {
-  font-family: 'Ubuntu Mono', 'Inconsolata', monospace, serif;
+//  font-family: 'Ubuntu Mono', 'Inconsolata', monospace, serif;
+  font-family: monospace;
   //font-family: 'Inconsolata', 'Ubuntu Mono', monospace, serif;
   font-size: 1em;
 }
@@ -212,10 +213,12 @@ pre {
 
 #editor {
   position: absolute;
-  width: 500px;
-  height: 400px;
-  font-size: 16px;
-  margin: 16px 0;
+  right: 0;
+  left: 0;
+  top: 16px;
+  bottom: 16px;
+  font-size: 14px;
+  overflow: visible !important;
 }
 
 .bizu-play-item {
@@ -231,15 +234,29 @@ pre {
 .ace_selection {
   background-color: rgb(255,171,64);
 }
+.ace_gutter {
+  overflow: visible !important;
+}
+.ace_gutter-layer {
+  overflow: visible !important;
+  background-color: #f0f0f0;
+  border-right: 1px solid #d3d3d3;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  top: -16px;
+  bottom: -16px;
+}
 
 .mdl-snackbar {
-//  display: block;
+  display: block;
 }
 .mdl-snackbar__text {
-  padding: 24px 24px 52px 24px;
   float: none;
   display: block;
   font-family: monospace;
+  .mdl-snackbar--active & {
+    padding: 24px 24px 52px 24px;
+  }
 }
 .mdl-snackbar__action {
   padding: 14px 24px;
@@ -256,10 +273,8 @@ pre {
     min-width: 708px;
     max-width: 708px;
   }
-  pre {
-    .textarea & {
-      font-size: 13px;
-    }
+  #editor {
+    font-size: 16px;
   }
 }
 
