@@ -15,8 +15,12 @@ module.exports = function (grunt) {
     shell: {
       bowerInstall: {
         command: 'bower install'
+      },
+      ghcss: {
+        command: 'cp css/all.css ../ && git checkout gh-pages && cp ../all.css css/ && git add css/all.css && git commit -m "CSS from master" && git push && git checkout master'
       }
     },
+
 
     copy: {
       ui: {

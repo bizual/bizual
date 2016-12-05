@@ -113,7 +113,7 @@ pre {
   .textarea & {
     padding: 0px;
     margin: 0px;
-    font-size: 13px;
+    font-size: 11px;
     line-height: 1.428571429;
     color: #333333;
     word-break: break-all;
@@ -236,8 +236,9 @@ pre {
 //  display: block;
 }
 .mdl-snackbar__text {
-  padding: 24px 24px 10px 24px;
+  padding: 24px 24px 52px 24px;
   float: none;
+  display: block;
   font-family: monospace;
 }
 .mdl-snackbar__action {
@@ -248,11 +249,17 @@ pre {
   right: 0;
 }
 @media (min-width: 480px) {
+  .mdl-snackbar__text {
+    min-height: 372px;
+  }
   .mdl-snackbar {
     min-width: 708px;
     max-width: 708px;
-    min-height: 400px;
-    max-height: 400px;
+  }
+  pre {
+    .textarea & {
+      font-size: 13px;
+    }
   }
 }
 
