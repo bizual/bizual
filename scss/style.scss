@@ -227,3 +227,32 @@ pre {
   margin-bottom: 40px;
   z-index: 900;
 }
+
+.ace_selection {
+  background-color: rgb(255,171,64);
+}
+
+.mdl-snackbar {
+  display: block;
+}
+.mdl-snackbar__text {
+  padding: 24px 24px 10px 24px;
+  float: none;
+  font-family: monospace;
+}
+.mdl-snackbar__action {
+  padding: 14px 24px;
+  float: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+@media (min-width: 480px) {
+  .mdl-snackbar {
+    min-width: 708px;
+    max-width: 708px;
+    min-height: 400px;
+    max-height: 400px;
+  }
+}
+
