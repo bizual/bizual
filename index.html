@@ -42,11 +42,15 @@ fimprog
     <script src=js/material.min.js></script>
     <script src=js/aceual.js></script>
     <script>
-      var editor = ace.edit("editor");
+      var editor = document.querySelector('#editor');
+//      console.log(editor.clientHeight);
+      editor.style.height = (window.innerHeight - 64 - 32) + "px";
+      editor = ace.edit("editor");
       //editor.renderer.setShowGutter(false);
       var UalMode = ace.require("ace/mode/ual").Mode;
       editor.session.setMode(new UalMode());
       editor.setTheme("ace/theme/ual");
+      editor.setOption("wrap", "free");
     </script>
     <div id="demo-snackbar-example" class="mdl-js-snackbar mdl-snackbar">
   <div class="mdl-snackbar__text"></div>
@@ -55,19 +59,41 @@ fimprog
 <script>
 (function() {
   'use strict';
+  var editorRendered;
+  window.onresize = function(event) {
+    editorRendered = document.querySelector('#editor');
+    editorRendered.style.height = (window.innerHeight - 64 - 32) + "px";
+  };
   var snackbarContainer = document.querySelector('#demo-snackbar-example');
   var showSnackbarButton = document.querySelector('#run');
+  var finishButton = document.querySelector('#demo-snackbar-example .mdl-snackbar__action');
+  var textConsole = document.querySelector('#demo-snackbar-example .mdl-snackbar__text');
+  var actionButton = document.querySelector('#demo-snackbar-example .mdl-snackbar__action');
   var handler = function(event) {
+    document.getElementById("demo-snackbar-example").className = "mdl-js-snackbar mdl-snackbar";
   };
+  finishButton.addEventListener('click', function() {
+    'use strict';
+    document.getElementById("demo-snackbar-example").className = "mdl-js-snackbar mdl-snackbar";
+    snackbarContainer.setAttribute('aria-hidden', true);
+    textConsole.setAttribute('aria-hidden', true)
+    actionButton.setAttribute('aria-hidden', true)
+  });
   showSnackbarButton.addEventListener('click', function() {
     'use strict';
-    var data = {
-      message: 'Aprendendo Algoritmo!!!',
-      timeout: 99999999999999999999,
-      actionHandler: handler,
-      actionText: 'Encerrar'
-    };
-    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+//    var data = {
+//      message: 'Aprendendo Algoritmo!!!',
+//      timeout: 99999999999999999999,
+//      actionHandler: handler,
+//      actionText: 'Encerrar'
+//    };
+//    snackbarContainer.MaterialSnackbar.showSnackbar(data);
+    textConsole.innerHTML = 'Aprendendo Algoritmo!!!';
+    actionButton.innerHTML = "Encerrar";
+    actionButton.removeAttribute('aria-hidden');
+    snackbarContainer.className = "mdl-js-snackbar mdl-snackbar mdl-snackbar--active";
+    snackbarContainer.setAttribute('aria-hidden', false);
+    snackbarContainer
   });
 }());
 </script>
