@@ -4,11 +4,7 @@ var version = 'v9';
 self.oninstall = function (event) {
   'use strict';
   event.waitUntil(
-<<<<<<< HEAD
     caches.open('bizual-static-' + version).then(function (cache) {
-=======
-    caches.open('bizual-static-v8').then(function (cache) {
->>>>>>> origin/gh-pages
       return cache.addAll([
         './',
         'css/all.css',
