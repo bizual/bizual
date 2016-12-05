@@ -2,7 +2,7 @@
 self.oninstall = function (event) {
   'use strict';
   event.waitUntil(
-    caches.open('bizual-static-v7').then(function (cache) {
+    caches.open('bizual-static-v8').then(function (cache) {
       return cache.addAll([
         './',
         'css/all.css',
