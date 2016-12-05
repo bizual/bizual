@@ -70,7 +70,7 @@ module.exports = function (grunt) {
     concat: {
       allcss: {
         files: {
-          'css/all.css': ['css/material.blue-orange.min.css', 'css/style.css']
+          'css/all.css': ['css/material.blue-orange.min.css', 'css/material-icons.css', 'css/style.css']
         }
       }
     },
