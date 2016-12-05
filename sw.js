@@ -1,29 +1,29 @@
 /*global self,caches*/
-var version = 'v11';
+var version = 'v12',
+    cacheName = 'bizual-static-' + version,
+    cacheFiles = [
+    './',
+    'css/all.css',
+    'css/fonts/MaterialIcons-Regular.eot',
+    'css/fonts/MaterialIcons-Regular.woff',
+    'css/fonts/MaterialIcons-Regular.woff2',
+    'css/fonts/MaterialIcons-Regular.ttf',
+    'js/page.js',
+    'js/material.min.js',
+    'js/aceual.js',
+    'imgs/icon.png'
+];
 
 self.oninstall = function (event) {
-  console.log('install');
   'use strict';
   event.waitUntil(
-    caches.open('bizual-static-' + version).then(function (cache) {
-      return cache.addAll([
-        './',
-        'css/all.css',
-        'css/fonts/MaterialIcons-Regular.eot',
-        'css/fonts/MaterialIcons-Regular.woff',
-        'css/fonts/MaterialIcons-Regular.woff2',
-        'css/fonts/MaterialIcons-Regular.ttf',
-        'js/page.js',
-        'js/material.min.js',
-        'js/aceual.js',
-        'imgs/icon.png'
-      ]);
+    caches.open(cacheName).then(function (cache) {
+      return cache.addAll(cacheFiles);
     })
   );
 };
 
 self.onfetch = function (event) {
-  console.log('fetch');
   'use strict';
   event.respondWith(
     caches.match(event.request)
@@ -31,17 +31,12 @@ self.onfetch = function (event) {
 };
 
 self.onactivate = function activator (event) {
-  console.log('activate');
   event.waitUntil(
     caches.keys().then(function (keys) {
       return Promise.all(keys
-        .filter(function (key) {
-          return key.indexOf(version) !== 0;
-        })
-        .map(function (key) {
-          console.log('need delete cache ' + key);
-//          return caches.delete(key);
-        })
+        if (key !== cacheName) {
+          return caches.delete(key);
+        }
       );
     })
   );
