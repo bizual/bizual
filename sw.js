@@ -39,7 +39,7 @@ self.onactivate = function (event) {
         if (key !== cacheName) {
           return caches.delete(key);
         }
-      });
+      }));
     })
   );
 };
