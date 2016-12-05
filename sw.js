@@ -1,5 +1,5 @@
 /*global self,caches*/
-var version = 'v9';
+var version = 'v10';
 
 self.oninstall = function (event) {
   console.log('install');
@@ -30,18 +30,18 @@ self.onfetch = function (event) {
   );
 };
 
-self.onactivate = function activator (event) {
-  console.log('activate');
-  event.waitUntil(
-    caches.keys().then(function (keys) {
-      return Promise.all(keys
-        .filter(function (key) {
-          return key.indexOf(version) !== 0;
-        })
-        .map(function (key) {
-          return caches.delete(key);
-        })
-      );
-    })
-  );
-};
+//self.onactivate = function activator (event) {
+//  console.log('activate');
+//  event.waitUntil(
+//    caches.keys().then(function (keys) {
+//      return Promise.all(keys
+//        .filter(function (key) {
+//          return key.indexOf(version) !== 0;
+//        })
+//        .map(function (key) {
+//          return caches.delete(key);
+//        })
+//      );
+//    })
+//  );
+//};
