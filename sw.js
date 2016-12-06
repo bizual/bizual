@@ -1,5 +1,5 @@
 /*global self,caches*/
-var version = 'v20',
+var version = 'v23',
     cacheName = 'bizual-static-' + version,
     cacheFiles = [
     './',
