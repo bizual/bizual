@@ -247,6 +247,9 @@ pre {
   bottom: -16px;
 }
 
+.mdl-snackbar {
+  display: block;
+}
 .mdl-snackbar__text {
   float: none;
   display: block;
@@ -264,8 +267,10 @@ pre {
   right: 0;
 }
 .running .mdl-button--fab {
-  -webkit-transform: translate(0,-256px);
-  transform: translate(0,-256px);
+    .running .mdl-button--fab {
+      -webkit-transform: translate(0,-256px);
+      transform: translate(0,-256px);
+  }
   transition: transform .25s cubic-bezier(0,0,.2,1);
   transition: transform .25s cubic-bezier(0,0,.2,1),-webkit-transform .25s cubic-bezier(0,0,.2,1);
 }
@@ -276,23 +281,67 @@ pre {
   transition: transform .25s cubic-bezier(.4,0,1,1);
   transition: transform .25s cubic-bezier(.4,0,1,1),-webkit-transform .25s cubic-bezier(.4,0,1,1);
 }
+@media (min-width: 480px) {
+  .mdl-snackbar--active {
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+  }
+  .mdl-snackbar {
+    transform: translate(0,80px);
+  }
+}
 @media (min-width: 768px) {
+  .running .mdl-button--fab {
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+  }
   .mdl-snackbar--active .mdl-snackbar__text {
     min-height: 372px;
   }
   .mdl-snackbar {
     min-width: 708px;
     max-width: 708px;
-//    -webkit-transform: translate(0,-400px);
-//    transform: translate(0,-400px);
+    border-radius: 2px;
+    -webkit-transform: translate(-50%,80px);
+    transform: translate(-50%,80px);
+  }
+  .mdl-snackbar--active {
+    -webkit-transform: translate(-50%,0);
+    transform: translate(-50%,0);
   }
   #editor {
     font-size: 16px;
   }
 }
-@media (max-width: 479px) {
+@media (min-width: 480px) and (max-width: 767px) {
+  .running .mdl-button--fab {
+    -webkit-transform: translate(0,-144px);
+    transform: translate(0,-144px);
+  }
   .mdl-snackbar--active .mdl-snackbar__text {
-    min-height: 200px;
+    min-height: 68px;
+  }
+  .mdl-snackbar {
+    max-height: 144px;
+  }
+  .mdl-snackbar {
+    min-width: 100%;
+    max-width: 100%;
+    left:0;
+    border-radius: 0;
+  }
+  .mdl-snackbar--active {
+    -webkit-transform: translate(0,0);
+    transform: translate(0,0);
+  }
+}
+@media (max-width: 479px) {
+  .running .mdl-button--fab {
+    -webkit-transform: translate(0,-256px);
+    transform: translate(0,-256px);
+  }
+  .mdl-snackbar--active .mdl-snackbar__text {
+    min-height: 180px;
   }
   .mdl-snackbar {
     max-height: 256px;
