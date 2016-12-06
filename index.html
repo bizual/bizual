@@ -71,12 +71,14 @@ fimprog
   var finishButton = document.querySelector('#demo-snackbar-example .mdl-snackbar__action');
   var textConsole = document.querySelector('#demo-snackbar-example .mdl-snackbar__text');
   var actionButton = document.querySelector('#demo-snackbar-example .mdl-snackbar__action');
+  var body = document.querySelector('body');
   var handler = function(event) {
     document.getElementById("demo-snackbar-example").className = "mdl-js-snackbar mdl-snackbar";
   };
   finishButton.addEventListener('click', function() {
     'use strict';
     document.getElementById("demo-snackbar-example").className = "mdl-js-snackbar mdl-snackbar";
+    body.className = "mdl-js";
     snackbarContainer.setAttribute('aria-hidden', true);
     textConsole.setAttribute('aria-hidden', true)
     actionButton.setAttribute('aria-hidden', true)
@@ -92,6 +94,7 @@ fimprog
     };
   showSnackbarButton.addEventListener('click', function() {
     'use strict';
+    body.className = "mdl-js running";
     var code = editor.getValue();
     myInterpreter = new Interpreter(code, initAlert);
     myInterpreter.run();
