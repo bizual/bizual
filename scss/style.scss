@@ -276,7 +276,7 @@ pre {
   transition: transform .25s cubic-bezier(.4,0,1,1);
   transition: transform .25s cubic-bezier(.4,0,1,1),-webkit-transform .25s cubic-bezier(.4,0,1,1);
 }
-@media (min-width: 480px) {
+@media (min-width: 768px) {
   .mdl-snackbar--active .mdl-snackbar__text {
     min-height: 372px;
   }
